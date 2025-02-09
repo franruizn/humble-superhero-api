@@ -6,10 +6,6 @@ export class SuperheroesService {
   private superheroes: Superhero[] = [];
 
   addSuperhero(superhero: Superhero): string {
-    if (!superhero.name || !superhero.superpower || !superhero.humilityScore) {
-      return `You have to specify a name, superpower and humility score for the hero!`;
-    }
-
     if (
       this.superheroes.some(
         (hero) => hero.name.toLowerCase === superhero.name.toLowerCase,
