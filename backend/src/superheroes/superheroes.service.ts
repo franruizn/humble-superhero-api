@@ -8,7 +8,7 @@ export class SuperheroesService {
   addSuperhero(superhero: Superhero): string {
     if (
       this.superheroes.some(
-        (hero) => hero.name.toLowerCase === superhero.name.toLowerCase,
+        (hero) => hero.name.toLowerCase() === superhero.name.toLowerCase(),
       )
     ) {
       return `The superhero ${superhero.name} is already in the squad. Try adding another one!`;
@@ -23,6 +23,7 @@ export class SuperheroesService {
   }
 
   getSuperheroes(): Superhero[] {
+    console.log('GET');
     return this.superheroes
       ? this.superheroes.sort(
           (hero1, hero2) => hero2.humilityScore - hero1.humilityScore,

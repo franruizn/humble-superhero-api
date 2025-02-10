@@ -6,18 +6,21 @@ const App = () => {
   const [superheroes, setSuperheroes] = useState([]);
 
   const fetchSuperheroes = async () => {
-    const response = await fetch('/superheroes');
+    const response = await fetch('http://localhost:4000/superheroes');
     const data = await response.json();
     setSuperheroes(data);
   };
 
-  const addSuperhero = async (hero: any) => {
-    await fetch('/superheroes', {
+  const addSuperhero = async (hero: any) => { 
+    const response = await fetch('http://localhost:4000/superheroes', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(hero),
     });
     fetchSuperheroes();
+
+    const text = await response.text();
+    alert(text);
   };
 
   useEffect(() => { fetchSuperheroes(); }, []);

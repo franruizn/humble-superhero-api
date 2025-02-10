@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
-import { Superhero } from '../types/Superhero';
+
+interface Superhero {
+  name: string;
+  superpower: string;
+  humilityScore: number;
+}
 
 interface Props {
-    onAdd: (hero: Superhero) => void;
-  }
+  onAdd: (hero: Superhero) => void;
+}
 
 const SuperheroForm: React.FC<Props> = ({ onAdd }) => {
   const [name, setName] = useState('');
@@ -25,9 +30,28 @@ const SuperheroForm: React.FC<Props> = ({ onAdd }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} required />
-      <input placeholder="Superpower" value={superpower} onChange={(e) => setSuperpower(e.target.value)} required />
-      <input type="number" min="1" max="10" value={humilityScore} onChange={(e) => setHumilityScore(Number(e.target.value))} required />
+      <input
+        type="text"
+        placeholder="Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        required
+      />
+      <input
+        type="text"
+        placeholder="Superpower"
+        value={superpower}
+        onChange={(e) => setSuperpower(e.target.value)}
+        required
+      />
+      <input
+        type="number"
+        min="1"
+        max="10"
+        value={humilityScore}
+        onChange={(e) => setHumilityScore(Number(e.target.value))}
+        required
+      />
       <button type="submit">Add Superhero</button>
     </form>
   );

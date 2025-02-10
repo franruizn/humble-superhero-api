@@ -4,11 +4,11 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors({
-    origin: 'https://humble-superhero-api-q0qc.onrender.com/',
+    origin: 'http://localhost:3000',
     methods: 'GET,POST',
     allowedHeaders: 'Content-Type',
   });
-  await app.listen(process.env.PORT ?? 3000);
-  console.log('Access Point running on http://localhost:3000');
+  await app.listen(4000);
+  console.log('Access Point running on http://localhost:4000');
 }
 bootstrap();
