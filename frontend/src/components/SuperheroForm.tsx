@@ -23,6 +23,7 @@ const SuperheroForm: React.FC<Props> = ({ onAdd }) => {
     }
 
     await onAdd({ name, superpower, humilityScore });
+    // Reset values
     setName('');
     setSuperpower('');
     setHumilityScore(5);
@@ -46,6 +47,7 @@ const SuperheroForm: React.FC<Props> = ({ onAdd }) => {
       />
       <input
         type="number"
+        // Give min and max values on the front end too to avoid humility score not being between 1 and 10
         min="1"
         max="10"
         value={humilityScore}

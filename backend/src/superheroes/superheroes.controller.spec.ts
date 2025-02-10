@@ -18,6 +18,7 @@ describe('SuperheroesController', () => {
   };
 
   beforeEach(async () => {
+    // Create a test module and compile it to mock the real app - This avoids having to setup the server for testing.
     const moduleRef: TestingModule = await Test.createTestingModule({
       controllers: [SuperheroesController],
       providers: [SuperheroesService],
@@ -39,16 +40,17 @@ describe('SuperheroesController', () => {
       humilityScore: 10,
     };
 
+    // Mock the value we are getting from the test.
     const addSuperheroSpy = jest
       .spyOn(superheroesService, 'addSuperhero')
       .mockResolvedValue({
         message: `One Punch Man has been added to the squad ! Welcome.`,
       } as never);
-
+    // Mocks the API call
     const response = await request(app.getHttpServer())
       .post('/superheroes')
       .send(newSuperhero);
-
+    // Checks the results
     expect(addSuperheroSpy).toHaveBeenCalledWith(newSuperhero);
     expect(response.status).toBe(201);
     expect(response.body).toEqual({
