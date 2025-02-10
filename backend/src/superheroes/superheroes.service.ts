@@ -7,9 +7,12 @@ export class SuperheroesService {
 
   addSuperhero(superhero: Superhero): string {
     if (
-      this.superheroes.some((hero) => hero === superhero) ||
       this.superheroes.some(
-        (hero) => hero.name.toLowerCase === superhero.name.toLowerCase,
+        (hero) =>
+          hero.name.toLowerCase() === superhero.name.toLowerCase() &&
+          hero.superpower.toLowerCase() ===
+            superhero.superpower.toLowerCase() &&
+          hero.humilityScore === superhero.humilityScore,
       )
     ) {
       return `The superhero ${superhero.name} is already in the squad. Try adding another one!`;
